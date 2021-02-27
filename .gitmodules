@@ -1,0 +1,9 @@
+[submodule "ms-listings-service"]
+	path = ms-listings-service
+	url = https://github.com/jugalbaraiya/ms-listings-service.git
+[submodule "ms-users-service"]
+	path = ms-users-service
+	url = https://github.com/jugalbaraiya/ms-users-service.git
+[submodule "ms-api-gateway"]
+	path = ms-api-gateway
+	url = https://github.com/jugalbaraiya/ms-api-gateway.git
