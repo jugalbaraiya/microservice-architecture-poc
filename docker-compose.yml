@@ -1,0 +1,45 @@
+version: "3"
+services:
+
+  ms-listings-service:
+    build:
+      context: "."
+      dockerfile: "./ms-listings-service/Dockerfile"
+    depends_on:
+      - ms-listings-service-db
+    environment:
+      - DB_URI=mysql://root:password@ms-listings-service-db/db?charset=UTF8
+    ports:
+      - "7100:7100"
+    volumes:
+      - ./ms-listings-service:/opt/app
+
+  ms-listings-service-db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=db
+    image: mysql:5.7.20
+    ports:
+      - 0.0.0.0:7200:3306
+
+
+  ms-users-service:
+    build:
+      context: "."
+      dockerfile: "./ms-users-service/Dockerfile"
+    depends_on:
+      - ms-users-service-db
+    environment:
+      - DB_URI=mysql://root:password@ms-users-service-db/db?charset=UTF8
+    ports:
+      - "7101:7101"
+    volumes:
+      - ./ms-users-service:/opt/app
+
+  ms-users-service-db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=db
+    image: mysql:5.7.20
+    ports:
+      - 0.0.0.0:7201:3306
